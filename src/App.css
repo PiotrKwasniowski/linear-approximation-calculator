@@ -11,7 +11,160 @@
   background-color: #33333C;
   background-repeat: no-repeat;
   background-size: cover;
+  flex-direction: space-between;
+  justify-content: center;
+  align-items: center;
+}
+
+.Input{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10%;
+  height: 90%;
+  width: 30%;
+  background: 
+    linear-gradient(rgba(219, 125, 32, 0.96), rgba(219, 125, 32, 0.96)),
+    url(../public/background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #DB7D20;
+  border-radius: 2%;
+  gap: 10px;
+}
+
+.Inputs{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-height: 80%;
+  overflow: auto;
+  gap: 20px;
+  max-width: 90%;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.InputForm{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 20px;
+  background: #33333C;
+  box-shadow: 8px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  
 }
 
 
+.editView{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
 
+.view{
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.InputValue {
+  font-family: inherit;
+  width: 30%;
+  border: 0;
+  border-bottom: 2px solid #808080;
+  outline: 0;
+  font-size: 1.3rem;
+  color: #ffffff;
+  padding: 5px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+.InputValue::placeholder {
+  color: transparent;
+}
+
+.InputValue:placeholder-shown ~ .InputValue {
+  font-size: 1rem;
+  cursor: text;
+  top: 20px;
+}
+
+.save{
+  background: #5AAB63;
+  box-shadow: 8px 8px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  color: #ffffff; 
+  width: 113px;
+  height: 34px;
+  align-self: center;
+  font-size: 20px;
+
+  color: #FFFFFF;
+
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.5 ease;
+}
+
+
+.calculate{
+  color: #ffffff; 
+  width: 300px;
+  height: 50px;
+  box-shadow: 8px 8px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  font-weight: 400;
+  font-size: 35px;
+  color: #FFFFFF;
+  text-shadow: 8px 8px 4px rgba(0, 0, 0, 0.25);
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.addNew{
+  background-color: #33333c;
+  color: #ffffff; 
+  width: 300px;
+  height: 50px;
+  box-shadow: 8px 8px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  font-weight: 400;
+  font-size: 35px;
+  color: #FFFFFF;
+  text-shadow: 8px 8px 4px rgba(0, 0, 0, 0.25);
+  border: none;
+  outline: none;
+
+  cursor: pointer;
+  transition: 0.5 ease;
+}
+
+.view p {
+  margin: 0;
+  align-self: center;
+  color: #ffffff;
+}
+
+.delete{
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 20px;
+  align-self: center;
+  user-select: none;
+  transition: 0.5 ease;
+}
+
+.delete:hover {
+  color: darkred;
+  transition: 0.5 ease;
+}

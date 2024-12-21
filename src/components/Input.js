@@ -3,23 +3,29 @@ import '../App.css';
 import InputForm from './InputForm';
 
 function Input(props) {
-    const [inputAmount, setInputAmount] = useState(3);
-    const [inputsData, setInputsData] = useState([]); 
+    const [inputsContainer, setInputsContainer] = useState([
+        { id: 1, x: '', y: '', u: '' },
+        { id: 2, x: '', y: '', u: '' },
+        { id: 3, x: '', y: '', u: '' }
+    ]);
 
-    // Handle saving input data from child component
-    const handleSave = (index, data) => {
-        setInputsData((prev) => {
-            const updatedData = [...prev];
-            updatedData[index] = data;
-            return updatedData;
+    const handleSave = (id, data) => {
+        setInputsContainer((prev) => {
+            return prev.map((input) => 
+                input.id === id ? { id, ...data } : input
+            );
         });
     };
 
+    const handleDelete = (id) => {
+        setInputsContainer((prev) => prev.filter((input) => input.id !== id));
+    };
+
     const Calculate = async () => {
-        console.log("Calculate", inputsData);
+        console.log("Calculate", inputsContainer);
 
         const requestData = {
-            points: inputsData.map((input) => ({
+            points: inputsContainer.map((input) => ({
                 x: parseFloat(input.x),
                 y: parseFloat(input.y),
                 uncertainty: parseFloat(input.u)
@@ -27,7 +33,6 @@ function Input(props) {
         };
 
         try {
-            
             const response = await fetch('https://lina.mslnk.dev/calculate', {
                 method: 'POST',
                 headers: {
@@ -36,11 +41,12 @@ function Input(props) {
                 body: JSON.stringify(requestData)
             });
 
-            console.log(response);
-            
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
+
+            const data = await response.json();
+            console.log(data);
 
         } catch (error) {
             console.error('Error during fetch:', error);
@@ -50,12 +56,21 @@ function Input(props) {
     return (
         <div className="Input">
             <div className="Inputs">
-                {[...Array(inputAmount)].map((_, i) => (
-                    <InputForm key={i} onSave={(data) => handleSave(i, data)} />
+                {inputsContainer.map((inputData) => (
+                    <InputForm 
+                        key={inputData.id} 
+                        id={inputData.id} 
+                        onSave={handleSave} 
+                        onDelete={handleDelete} 
+                        initialData={inputData}
+                    />
                 ))}
             </div>
-            <button onClick={() => setInputAmount(inputAmount + 1)}>Add Input</button>
-            <button onClick={Calculate}>Calculate</button>
+            <button className='addNew' onClick={() => {
+                const newId = Date.now();
+                setInputsContainer((prev) => [...prev, { id: newId, x: '', y: '', u: '' }]);
+            }}>Add Input</button>
+            <button className='save calculate' onClick={Calculate}>Calculate</button>
         </div>
     );
 }
