@@ -5,10 +5,11 @@ import Output from './components/Output';
 
 function App() {
   const [inputData, setInputData] = useState([]);
+
   return (
     <div className="App">
-        <Input  />
-        <Output Data={inputData}/>
+        <Input onCalculate={setInputData} />
+        <Output Data={inputData} />
     </div>
   );
 }
