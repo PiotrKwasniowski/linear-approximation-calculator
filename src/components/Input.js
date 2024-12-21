@@ -23,8 +23,9 @@ function Input({ onCalculate }) {
         const requestData = {
             points: inputsContainer.map((input) => ({
                 x: parseFloat(input.x),
+                uncertaintyX: parseFloat(input.ux),
                 y: parseFloat(input.y),
-                uncertainty: parseFloat(input.u),
+                uncertaintyY: parseFloat(input.uy),
             })),
         };
 
@@ -52,7 +53,7 @@ function Input({ onCalculate }) {
                     const newId = Date.now();
                     setInputsContainer((prev) => [
                         ...prev,
-                        { id: newId, x: '', y: '', u: '' }
+                        { id: newId, x: '', ux: '',y: '', uy: '' }
                     ]);
                 }}
             >
