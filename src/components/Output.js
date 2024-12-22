@@ -17,9 +17,9 @@ function Output({ Data }) {
         const requestData = {
             points: Data.map((input) => ({
                 x: parseFloat(input.x),
-                uncertaintyX: parseFloat(input.uncertaintyX),
                 y: parseFloat(input.y),
-                uncertaintyY: parseFloat(input.uncertaintyY),
+                uncertainty_x: parseFloat(input.uncertaintyX),
+                uncertainty_y: parseFloat(input.uncertaintyY),
             })),
         };
 
